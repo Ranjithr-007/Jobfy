@@ -41,11 +41,13 @@ INSTALLED_APPS = [
 
     'jobapp.apps.JobappConfig',
     'account.apps.AccountConfig',
+    'message.apps.MessageConfig',
 
     #3rd Party App
     'ckeditor',
     'taggit',
     'user_visit',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -92,13 +94,6 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 
 
@@ -171,7 +166,14 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+# chat settings
+ASGI_APPLICATION = "job.routing.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND":"channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 

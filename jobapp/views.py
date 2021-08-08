@@ -161,20 +161,6 @@ def search_result_view(request):
         if job_type:
             job_list = job_list.filter(job_type__iexact=job_type)
 
-    # job_title_or_company_name = request.GET.get('text')
-    # location = request.GET.get('location')
-    # job_type = request.GET.get('type')
-
-    #     job_list = Job.objects.all()
-    #     job_list = job_list.filter(
-    #         Q(job_type__iexact=job_type) |
-    #         Q(title__icontains=job_title_or_company_name) |
-    #         Q(location__icontains=location)
-    #     ).distinct()
-
-    # job_list = Job.objects.filter(job_type__iexact=job_type) | Job.objects.filter(
-    #     location__icontains=location) | Job.objects.filter(title__icontains=text) | Job.objects.filter(company_name__icontains=text)
-
     paginator = Paginator(job_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

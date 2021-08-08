@@ -29,6 +29,7 @@
                                     <th>Name</th>
                                     <th>Job Title</th>
                                     <th>Applied Date</th>
+                                    <th>Message</th>
                                     <th>View </th>
                         
                                 </tr>
@@ -41,6 +42,12 @@
                                     <td class="text-center"><a href="">{{ applicant.user.get_full_name }}</a></td     >
                                     <td>{{ applicant.job.title }}</td>
                                     <td>{{ applicant.timestamp }}</td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="/chat/{{user.id}}/"
+                                                role="button">
+                                            Connect
+                                        </a>
+                                    </td>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="{% url 'jobapp:applicant-details' applicant.user.id %}"
                                                 role="button">
