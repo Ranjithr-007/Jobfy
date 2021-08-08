@@ -1,3 +1,6 @@
+
+
+from account.models import *
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -7,6 +10,10 @@ from django.urls import reverse, reverse_lazy
 
 from account.forms import *
 from jobapp.permission import user_is_employee 
+import uuid
+
+import operator
+
 
 
 def get_success_url(request):
@@ -91,7 +98,6 @@ def user_logIn(request):
     Provides users to logIn
 
     """
-    print('hai')
     form = UserLoginForm(request.POST)
     
 
@@ -99,7 +105,6 @@ def user_logIn(request):
         return redirect('/')
     
     else:
-        print('hello')
         if request.method == 'POST':
             if form.is_valid():
                 auth.login(request, form.get_user())
@@ -118,3 +123,4 @@ def user_logOut(request):
     auth.logout(request)
     messages.success(request, 'You are Successfully logged out')
     return redirect('account:login')
+

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4"></div>
+        <div class="col-md-4 col-sm-4 text-white" style="background: linear-gradient(0deg, rgba(34,193,195,1) 17%, rgba(253,187,45,1) 77%);
+        width: 17em;height: 20em;padding: 1em;overflow-y: auto; margin-top:3em; margin-bottom:3em;">
+        {% if exist == True %}
+            {% for chat in chats %}
+                {% if chat.user1.email == request.user.email %}
+                <a href="/chat/{{chat.user2.id}}/" style="text-decoration: none; color: white;">
+                    <div style="background: linear-gradient(90deg, rgb(8, 146, 54) 0%, rgba(9,121,39,1) 18%, rgba(99,255,0,1) 82%);margin: 3px;">
+                        {% if chat.user2.propic == '' %}
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTew2PT1GnUtzFQIJq755hjjHAVIZtQz7Ywng&usqp=CAU" style="width: 2em;margin: 3px;" alt="">
+                        {% else %}
+                            <img src="{{chat.img1}}" style="width: 2em;margin: 3px;" alt="">
+                        {% endif %}
+                        <label for="" style="margin-left: 10px;text-transform: capitalize;font-size: 15px;"> {{chat.title}} | {{chat.user2.email}}</label>
+                    </div>
+                </a>
+                {% else %}
+                <a href="" style="text-decoration: none; color: white;">
+                    <div style="background: linear-gradient(90deg, rgb(8, 146, 54) 0%, rgba(9,121,39,1) 18%, rgba(99,255,0,1) 82%);margin: 3px;">
+                        {% if chat.user1.propic == '' %}
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTew2PT1GnUtzFQIJq755hjjHAVIZtQz7Ywng&usqp=CAU" style="width: 2em;margin: 3px;" alt="">
+                        {% else %}
+                            <img src="{{chat.img1}}" style="width: 2em;margin: 3px;" alt="">
+                        {% endif %}
+                        <label for="" style="margin-left: 10px;text-transform: capitalize;font-size: 15px;">{{chat.title}} | {{chat.user1.email}}</label>
+                    </div>
+                </a>
+                {% endif %}
+
+            {% endfor %}      
+        {% else %}
+            <label for=""><b> No chats yet</b></label>   
+        {% endif %}        
+        </div>
+        <div class="col-md-4 col-sm-4"></div>
+    </div>
+</div>
+{% endblock %}

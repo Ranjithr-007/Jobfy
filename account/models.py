@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+from datetime import date, timedelta, datetime
 from account.managers import CustomUserManager
 
 JOB_TYPE = (
@@ -33,3 +33,5 @@ class User(AbstractUser):
     def get_full_name(self):
         return self.first_name+ ' ' + self.last_name
     objects = CustomUserManager()
+
+

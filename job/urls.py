@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jobapp.urls')),
     path('', include('account.urls')),
+    path('', include('message.urls')),
 
 ]
